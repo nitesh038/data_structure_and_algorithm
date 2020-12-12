@@ -1,6 +1,4 @@
 #include<iostream>
-#include<vector>
-
 
 struct Stack
 {
@@ -8,7 +6,6 @@ struct Stack
     int size;
     int *arr;
 };
-
 
 bool isEmpty(Stack* s)
 {
@@ -98,6 +95,5 @@ int main()
         }
     }
     
-
     return 0;
 }
