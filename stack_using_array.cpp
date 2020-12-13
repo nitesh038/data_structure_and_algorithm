@@ -57,9 +57,18 @@ void push(Stack *s, int data)
     std::cout<< s->arr[s->top] << " is Pushed\n";
 }
 
+void display(Stack st)
+{
+    std::cout<<"Elements in the stack are: \n";
+    while(st.top !=-1)
+    {
+        std::cout<< st.arr[st.top--] << std::endl;
+    }
+}
+
 int main()
 {
-    Stack st;;
+    Stack st;
     std::cout<< "Enter the size of Stack: ";
     std::cin >> st.size;
     st.top = -1; //Empty Stack
@@ -67,9 +76,9 @@ int main()
     int position{};
     st.arr = new int[st.size];
     char ch{};
-    while(1)
+    while(ch!='5')
     {
-        std::cout << "Press 1 to Push an element .. 2 to Pop an element .... 3 to Peek and 4 to exit\n";
+        std::cout << "Press 1 to Push an element .. 2 to Pop an element .... 3 to Peek and 4 to display and 5 to exit\n";
         std::cin >> ch;
         switch (ch)
         {
@@ -78,7 +87,6 @@ int main()
                    push(&st, data);
             /* code */
             break;
-        case '2':  //int popped_element = pop(st);
                    std::cout<< "Popped element is: " << pop(&st) << std::endl;
                    break;
 
@@ -87,13 +95,15 @@ int main()
                   std::cout<< "Peeked Element is: " << peek(st, position) << std::endl;
                   break;  
 
-        case '4': exit(0);
+        case '4': display(st);
                   break;  
+        case '5': break;
+
         default:
                 std::cout<< "Wrong Input provided\n";
             break;
         }
     }
-    
+
     return 0;
 }
