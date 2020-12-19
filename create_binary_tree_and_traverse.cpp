@@ -41,18 +41,12 @@ void enqueue(struct Node** rear, struct Node** front, struct BinaryTreeNode** da
     p->next = NULL;
     if(*front==NULL) // first NODE though it could have been rear == NULL also
     {
-        std::cout<<"Problem11\n";
         *front = *rear = p;
-        std::cout<<"Problem12\n";
     }
     else
     {
-        std::cout<<"\nProblem13\n";
-        std::cout<<"\np" << p->bt->data;
         (*rear)->next = p;
-        std::cout<<"Problem14\n";
         *rear = p;
-        std::cout<<"Problem15\n";
     }
 }
 void dequeue(struct Node** front, struct BinaryTreeNode** dequeued_element)
