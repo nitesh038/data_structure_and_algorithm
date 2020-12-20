@@ -67,7 +67,6 @@ void display(struct Node* front)
 
 int main()
 {
-    struct Node* q = NULL;
     struct Node* front = NULL;
     struct Node* rear = NULL;
 
