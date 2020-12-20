@@ -29,7 +29,7 @@ bool isFull(struct Node* rear)
     return false;
 }
 
-void enqueue(struct Node** rear, struct Node** front, struct BinaryTreeNode** data)
+void enqueue(struct Node** rear, struct Node** front, struct BinaryTreeNode* data)
 {
     struct Node* p = new Node;
     if(isFull(p))
@@ -37,22 +37,17 @@ void enqueue(struct Node** rear, struct Node** front, struct BinaryTreeNode** da
         std::cout<<"Queue Overflow\n";
         return;
     }
-    p->bt = *data;
+    p->bt = data;
     p->next = NULL;
+
     if(*front==NULL) // first NODE though it could have been rear == NULL also
     {
-        std::cout<<"Problem11\n";
         *front = *rear = p;
-        std::cout<<"Problem12\n";
     }
     else
     {
-        std::cout<<"\nProblem13\n";
-        std::cout<<"\np" << p->bt->data;
         (*rear)->next = p;
-        std::cout<<"Problem14\n";
         *rear = p;
-        std::cout<<"Problem15\n";
     }
 }
 void dequeue(struct Node** front, struct BinaryTreeNode** dequeued_element)
@@ -95,36 +90,30 @@ void postorder(struct BinaryTreeNode* root)
         std::cout<< root->data;
     }
 }
-/* void levelorder(struct BinaryTreeNode* root)
+void levelorder(struct BinaryTreeNode* root)
 {
     struct Node* front = NULL;
     struct Node* rear = NULL;
     
     std::cout<< root->data;
-    enqueue(&front, &rear, &root);
+    enqueue(&rear, &front, root);
     
     while(!isEmpty(front))
     {   
-        std::cout<<"Problem1\n";
         dequeue(&front, &root);
-        std::cout<<"Problem2\n";
         if(root->lchild)
         {
             std::cout<< root->lchild->data;
-            std::cout<<"Problem3\n";
-            enqueue(&front, &rear, &root->lchild);
-            std::cout<<"Problem4\n";
+            enqueue(&rear, &front, root->lchild);
         }
         if(root->rchild)
         {
             std::cout<< root->rchild->data;
-            std::cout<<"Problem5\n";
-            enqueue(&front, &rear, &root->rchild);
-            std::cout<<"Problem6\n";
+            enqueue(&rear, &front, root->rchild);
         }
     }
 
- }*/
+ }
 
 void createBinaryTree()
 {
@@ -136,7 +125,7 @@ void createBinaryTree()
     root->lchild = NULL;
     root->rchild = NULL;
   
-    enqueue(&front, &rear, &root);
+    enqueue(&rear, &front, root);
     struct BinaryTreeNode* p = new BinaryTreeNode;
     struct BinaryTreeNode* temp = NULL;
     int data{};
@@ -152,7 +141,7 @@ void createBinaryTree()
             temp->lchild = NULL;
             temp->rchild = NULL;
             p->lchild = temp;
-            enqueue(&rear, &front, &p->lchild);
+            enqueue(&rear, &front, p->lchild);
         }
         std::cout<< "Enter the data of the right child(-1 if no node) of: "<< p->data << std::endl;
         std::cin>>data;
@@ -163,7 +152,7 @@ void createBinaryTree()
             temp->lchild = NULL;
             temp->rchild = NULL;
             p->rchild = temp;
-            enqueue(&rear, &front, &p->rchild);
+            enqueue(&rear, &front, p->rchild);
         }
     }
 
@@ -176,8 +165,8 @@ void createBinaryTree()
     std::cout<< "\nPostorder Traversal of Tree is: \n";
     postorder(root);
 
-  /*   std::cout<< "Level order Traversal of Tree is: \n";
-    levelorder(root);  */
+    std::cout<< "Level order Traversal of Tree is: \n";
+    levelorder(root);
 
 }
         
