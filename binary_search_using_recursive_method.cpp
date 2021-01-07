@@ -3,9 +3,7 @@
 #include<algorithm>
 #include <cmath>
 
-std::vector<int> input{};
-
-int find_element_using_binary_search(int low, int high, int key)
+int find_element_using_binary_search(std::vector<int>& input,int low, int high, int key)
 {
     if(low == high)
     {
@@ -29,11 +27,11 @@ int find_element_using_binary_search(int low, int high, int key)
         {
             if(key > input[mid])
             {
-                find_element_using_binary_search(mid+1, high, key);
+                find_element_using_binary_search(input, mid+1, high, key);
             }
             else
             {
-                find_element_using_binary_search(low, mid-1, key);
+                find_element_using_binary_search(input, low, mid-1, key);
             }
         }
     }
@@ -41,6 +39,7 @@ int find_element_using_binary_search(int low, int high, int key)
 
 int main()
 {
+    std::vector<int> input{};
     int number{};
     std::cout<<"Please enter the number of elements in array: \n";
     std::cin>> number;
@@ -59,7 +58,7 @@ int main()
     std::cin >> data;
     int low = 0;
     int high = input.size();
-    int position = find_element_using_binary_search(low, high, data);
+    int position = find_element_using_binary_search(input, low, high, data);
     if(position == -1)
         std::cout<< "Element not found\n";
     else
